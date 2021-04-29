@@ -1,5 +1,15 @@
 
+## Show a preview of graph
+*(Ref: https://towardsdatascience.com/reading-and-visualizing-geotiff-images-with-python-8dcca7a74510)*
 
+
+```python
+from rasterio.plot import show
+
+fp = r'GeoTiff_Image.tif'
+img = rasterio.open(fp)
+show(img)
+```
 
 
 # References
