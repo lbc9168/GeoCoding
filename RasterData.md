@@ -19,3 +19,7 @@ show(img)
 Rasterio Guide: https://rasterio.readthedocs.io/en/latest/index.html
 
 知乎专栏--地理信息及图像处理: https://www.zhihu.com/column/c_1253474882190192640
+
+tifffile -- read and write tiff files: https://github.com/cgohlke/tifffile
+
+遥感数据处理: https://blog.csdn.net/z704630835/article/details/83349551
