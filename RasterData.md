@@ -1,4 +1,20 @@
 
+## Read shape file with geopanda
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+gdf = gpd.read_file('C:/Users/liu34/OneDrive/OSU/Working Papers/5 Guyana and Suriname/Data/Geographic files/Surinam_files/sur_admbnda_adm1_2017.shp') 
+# 使用文件所在路径
+
+print(gdf.shape)
+print(gdf.head)
+
+gdf.plot()
+plt.show()
+```
+
 ## Show a preview of graph
 *(Ref: https://towardsdatascience.com/reading-and-visualizing-geotiff-images-with-python-8dcca7a74510)*
 
