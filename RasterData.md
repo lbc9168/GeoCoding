@@ -27,6 +27,67 @@ img = rasterio.open(fp)
 show(img)
 ```
 
+## Splitting raster data
+*(Ref: https://www.youtube.com/watch?v=p_BsFdV_LUk&list=PL4aUQR9L9RFp7kuu38hInDE-9ByueEMES&index=1)*
+
+```python
+# splitting raster data
+
+from osgeo import gdal
+import matplotlib.pyplot as plt
+
+dem = gdal.Open("C:/Users/liu34/OneDrive/OSU/Working Papers/5 Guyana and Suriname/Data/TMF_data/AnnualChange/JRC_TMF_AnnualChange_v1_1990_SAM_ID49_N10_W60.tif")
+gt = dem.GetGeoTransform()
+
+xmin = gt[0]
+ymax = gt[3]
+res = gt[1]
+
+xlen = res * dem.RasterXSize     # 0.000269 decimal degrees = 30m
+ylen = res * dem.RasterYSize
+
+# seprate by 5*5
+div = 5
+
+xsize = xlen/div
+ysize = ylen/div
+
+xsteps = [xmin + xsize * i for i in range(div+1)]
+ysteps = [ymax - ysize * i for i in range(div+1)]
+
+for i in range(div):
+    for j in range(div):
+        xmin = xsteps[i]
+        xmax = xsteps[i+1]
+        ymax = ysteps[j]
+        ymin = ysteps[j+1]
+        
+        print(i,", ",j)
+        print("xmin: "+str(xmin))
+        print("xmax: "+str(xmax))
+        print("ymin: "+str(ymin))
+        print("ymax: "+str(ymax))
+        print("\n")
+
+        gdal.Warp("dem"+str(i)+str(j)+".tif", dem, 
+                  outputBounds = (xmin, ymin, xmax, ymax), dstNodata = -9999)
+
+
+ds = gdal.Open("dem01.tif")
+band = ds.GetRasterBand(1)
+array = band.ReadAsArray()
+
+plt.figure()
+plt.imshow(array)
+
+ds1 = gdal.Open("dem00.tif")
+band1 = ds1.GetRasterBand(1)
+array1 = band1.ReadAsArray()
+
+plt.figure()
+plt.imshow(array1)
+```
+
 
 # References
 
