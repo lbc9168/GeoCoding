@@ -1,4 +1,28 @@
 
+## Clip tif file with shape file polygons with QGIS
+
+```python
+import gdal
+
+gdal.UseExceptions()
+
+# use raster file path
+input_raster = "C:/Users/liu34/OneDrive/OSU/Working Papers/5 Guyana and Suriname/Data/TMF_data/AnnualChange/JRC_TMF_AnnualChange_v1_1990_SAM_ID49_N10_W60.tif"
+
+# use shape file path
+input_shape = "C:/Users/liu34/OneDrive/OSU/Working Papers/5 Guyana and Suriname/Data/Geographic files/Surinam_files/sur_admbnda_adm1_2017.shp"
+
+# create new raster file
+output_raster = "C:/Users/liu34/OneDrive/OSU/Working Papers/5 Guyana and Suriname/PythonProject/surinam_test.tif"
+
+ds = gdal.Warp(output_raster, input_raster, format = 'GTiff',
+               cutlineDSName = input_shape,
+               cutlineWhere = "ADM1_NL = 'Brokopondo'",  # use column from shape file
+               dstNodata=-9999)
+
+iface.addRasterLayer(output_raster)
+```
+
 ## Read shape file with geopanda
 
 ```python
