@@ -1,6 +1,8 @@
 
 ## Clip tif file with shape file polygons with QGIS
 
+该过程在QGIS中的Python Console实现
+
 ```python
 import gdal
 
