@@ -1,3 +1,7 @@
+## 叠加分析（Overlay）
+
+根据shapefile切割raster data，也可以在arcgis pro中先用raster to polygon，将raster file转化为shape file，再使用overlay工具将两个shape file叠加。如果涉及多个shapefile，可以视情况使用merge工具进行组合。
+
 
 ## Clip tif file with shape file polygons with QGIS
 
